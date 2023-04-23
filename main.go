@@ -11,10 +11,9 @@ import (
 //go:embed input
 var input string
 
-func main() {
+func parseInput(input string) []int {
 	var caloriesForElves []int
 	inputs := strings.Split(input, "\n\n")
-
 	for _, v := range inputs {
 		caloriesPerElve := 0
 		for _, v := range strings.Split(v, "\n") {
@@ -23,7 +22,11 @@ func main() {
 		}
 		caloriesForElves = append(caloriesForElves, caloriesPerElve)
 	}
+	return caloriesForElves
+}
 
+func main() {
+	caloriesForElves := parseInput(input)
 	sort.Sort(sort.Reverse(sort.IntSlice(caloriesForElves)))
 
 	top3CaloriesPerElveTotal := 0
