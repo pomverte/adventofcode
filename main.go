@@ -9,6 +9,9 @@ import (
 //go:embed input-day2.txt
 var inputDay2 string
 
+//go:embed input-day3.txt
+var inputDay3 string
+
 type Hand int
 
 func (hand Hand) val() int {
@@ -112,6 +115,41 @@ func day2() {
 	fmt.Println(totalPoints)
 }
 
+type Rucksack struct {
+	compartmentOne string
+	compartmentTwo string
+}
+
+func parseRucksack(inputDay3 string) []Rucksack {
+	rucksacks := []Rucksack{}
+	for _, v := range strings.Split(inputDay3, "\n") {
+		if len(v) == 0 {
+			break
+		}
+		mid := len(v) / 2
+		rucksacks = append(rucksacks, Rucksack{v[:mid], v[mid:]})
+	}
+	return rucksacks
+}
+
+func findCommonItem(rucksack Rucksack) rune {
+	for _, one := range rucksack.compartmentOne {
+		for _, two := range rucksack.compartmentTwo {
+			if one == two {
+				return one
+			}
+		}
+	}
+	panic("oups, there is no common item in " + rucksack.compartmentOne + " and " + rucksack.compartmentTwo)
+}
+
+func day3() {
+	rucksacks := parseRucksack(inputDay3)
+	for _, v := range rucksacks {
+		fmt.Printf("%c\n", findCommonItem(v))
+	}
+}
+
 func main() {
-	day2()
+	day3()
 }
