@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-//go:embed input
-var input string
+//go:embed input-day2.txt
+var inputDay2 string
 
 type Hand int
 
@@ -15,18 +15,38 @@ func (hand Hand) val() int {
 	return int(hand)
 }
 
+type Strategy int
+
+func (strat Strategy) val() int {
+	return int(strat)
+}
+
 const (
 	Rock Hand = iota + 1
 	Paper
 	Scissors
 
-	Win  = 6
-	Draw = 3
+	Lose Strategy = 0
+	Draw Strategy = 3
+	Win  Strategy = 6
 )
 
 type HandPairs struct {
 	Opponent Hand
-	Mine     Hand
+	Mine     Strategy
+}
+
+func getStrategy(strategy string) Strategy {
+	switch strategy {
+	case "X":
+		return Lose
+	case "Y":
+		return Draw
+	case "Z":
+		return Win
+	default:
+		panic("Wrong strategy[" + strategy + "]")
+	}
 }
 
 func getHand(hand string) Hand {
@@ -38,35 +58,35 @@ func getHand(hand string) Hand {
 	case "C", "Z":
 		return Scissors
 	default:
-		panic("Wrong input[" + hand + "]")
+		panic("Wrong hand[" + hand + "]")
 	}
 }
 
-func calculateHands(opponent Hand, mine Hand) int {
-	if opponent == mine {
-		// draw
-		return opponent.val() + Draw
+func calculateHands(opponent Hand, mine Strategy) int {
+	if mine == Draw {
+		return Draw.val() + opponent.val()
 	}
-	switch opponent {
-	case Rock:
-		if mine == Paper {
-			// win Paper > Rock < Paper
-			return Paper.val() + Win
+	if mine == Win {
+		switch opponent {
+		case Rock:
+			return Win.val() + Paper.val()
+		case Paper:
+			return Win.val() + Scissors.val()
+		case Scissors:
+			return Win.val() + Rock.val()
 		}
-		// lose Rock > Scissors
-		return Scissors.val()
-	case Paper:
-		if mine == Rock {
-			return Rock.val()
-		}
-		return Scissors.val() + Win
-	case Scissors:
-		if mine == Rock {
-			return Rock.val() + Win
-		}
-		return Paper.val()
 	}
-	panic("oups")
+	if mine == Lose {
+		switch opponent {
+		case Rock:
+			return Lose.val() + Scissors.val()
+		case Paper:
+			return Lose.val() + Rock.val()
+		case Scissors:
+			return Lose.val() + Paper.val()
+		}
+	}
+	return 0
 }
 
 func parseInput(input string) []HandPairs {
@@ -77,17 +97,21 @@ func parseInput(input string) []HandPairs {
 			break
 		}
 		battle := strings.Split(v, " ")
-		newHandPairs := HandPairs{getHand(battle[0]), getHand(battle[1])}
+		newHandPairs := HandPairs{getHand(battle[0]), getStrategy(battle[1])}
 		handPairs = append(handPairs, newHandPairs)
 	}
 	return handPairs
 }
 
-func main() {
-	handPairs := parseInput(input)
+func day2() {
+	handPairs := parseInput(inputDay2)
 	totalPoints := 0
 	for _, v := range handPairs {
 		totalPoints += calculateHands(v.Opponent, v.Mine)
 	}
 	fmt.Println(totalPoints)
+}
+
+func main() {
+	day2()
 }
