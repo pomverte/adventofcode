@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 //go:embed input-day2.txt
@@ -143,11 +144,21 @@ func findCommonItem(rucksack Rucksack) rune {
 	panic("oups, there is no common item in " + rucksack.compartmentOne + " and " + rucksack.compartmentTwo)
 }
 
+func getPriority(letter rune) rune {
+	if unicode.IsLower(letter) {
+		return unicode.ToUpper(letter) - 'A' + 1
+	}
+	return unicode.ToUpper(letter) - 'A' + 1 + 26
+}
+
 func day3() {
 	rucksacks := parseRucksack(inputDay3)
+	var commonItemPrioritySum rune
 	for _, v := range rucksacks {
-		fmt.Printf("%c\n", findCommonItem(v))
+		// fmt.Printf("%c %v\n", findCommonItem(v), getPriority(findCommonItem(v)))
+		commonItemPrioritySum += getPriority(findCommonItem(v))
 	}
+	fmt.Println(commonItemPrioritySum)
 }
 
 func main() {
