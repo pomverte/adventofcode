@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -98,9 +97,6 @@ func TestDay3FindCommonItemBetweenRucksack(t *testing.T) {
 		Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"},
 		Rucksack{"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"})
 	expected := []rune{'r', 's', 'F', 'M', 'f'}
-	for _, v := range expected {
-		fmt.Println(v)
-	}
 	if !runesEquals(result, expected) {
 		t.Errorf("findCommonItemBetweenRucksack(r1, r2) returned %c, expected %c", result, expected)
 	}
