@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -33,7 +34,7 @@ func TestDay3FindCommonItem(t *testing.T) {
 
 func TestDay3GetPriority(t *testing.T) {
 	result := getPriority('p')
-	var expected int32 = 16
+	expected := 16
 	if result != expected {
 		t.Errorf("getPriority('A') returned %v, expected %v", result, expected)
 	}
@@ -66,5 +67,63 @@ func TestDay3GetPriority(t *testing.T) {
 	expected = 19
 	if result != expected {
 		t.Errorf("getPriority('t') returned %v, expected %v", result, expected)
+	}
+}
+
+func TestRunesEquals(t *testing.T) {
+	r1 := []rune{'F', 'M', 'f', 'r', 's'}
+	r2 := []rune{'r', 's', 'F', 'M', 'f'}
+	if !runesEquals(r1, r2) {
+		t.Errorf("runesEquals(%c, %c) should be equals", r1, r2)
+	}
+}
+
+func TestRunesEqualsFail1(t *testing.T) {
+	r1 := []rune{'F', 'M', 'f', 'r', 's'}
+	r2 := []rune{'r', 's', 'F', 'M', 'f', 't'}
+	if runesEquals(r1, r2) {
+		t.Errorf("runesEquals(%c, %c) should NOT be equals", r1, r2)
+	}
+}
+
+func TestRunesEqualsFail2(t *testing.T) {
+	r1 := []rune{'F', 'M', 'f', 'r', 'a'}
+	r2 := []rune{'r', 's', 'F', 'M', 'f'}
+	if runesEquals(r1, r2) {
+		t.Errorf("runesEquals(%c, %c) should NOT be equals", r1, r2)
+	}
+}
+func TestDay3FindCommonItemBetweenRucksack(t *testing.T) {
+	result := findCommonItemBetweenRucksack(
+		Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"},
+		Rucksack{"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"})
+	expected := []rune{'r', 's', 'F', 'M', 'f'}
+	for _, v := range expected {
+		fmt.Println(v)
+	}
+	if !runesEquals(result, expected) {
+		t.Errorf("findCommonItemBetweenRucksack(r1, r2) returned %c, expected %c", result, expected)
+	}
+}
+
+func TestDay3FindTeamBadge1(t *testing.T) {
+	result := findTeamBadge(
+		Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"},
+		Rucksack{"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"},
+		Rucksack{"PmmdzqPrV", "vPwwTWBwg"})
+	var expected rune = 'r'
+	if result != expected {
+		t.Errorf("findTeamBadge(team) returned %c, expected %c", result, expected)
+	}
+}
+
+func TestDay3FindTeamBadge2(t *testing.T) {
+	result := findTeamBadge(
+		Rucksack{"wMqvLMZHhHMvwLH", "jbvcjnnSBnvTQFn"},
+		Rucksack{"ttgJtRGJ", "QctTZtZT"},
+		Rucksack{"CrZsJsPPZsGz", "wwsLwLmpwMDw"})
+	var expected rune = 'Z'
+	if result != expected {
+		t.Errorf("findTeamBadge(team) returned %c, expected %c", result, expected)
 	}
 }
