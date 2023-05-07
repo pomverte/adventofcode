@@ -19,25 +19,6 @@ func (r Rucksack) getItems() string {
 	return r.compartmentOne + r.compartmentTwo
 }
 
-func runesEquals(r1, r2 []rune) bool {
-	if len(r1) != len(r2) {
-		return false
-	}
-	for _, i := range r1 {
-		found := false
-		for _, j := range r2 {
-			if i == j {
-				found = true
-				break
-			}
-		}
-		if !found {
-			return false
-		}
-	}
-	return true
-}
-
 func parseRucksack(inputDay3 string) []Rucksack {
 	rucksacks := []Rucksack{}
 	for _, v := range strings.Split(inputDay3, "\n") {
