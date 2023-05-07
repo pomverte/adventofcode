@@ -77,6 +77,7 @@ func findTeamBadge(r1, r2, r3 Rucksack) rune {
 }
 
 func day3() {
+	fmt.Println("=== DAY 3")
 	rucksacks := parseRucksack(inputDay3)
 	commonItemPrioritySum := 0
 	for _, v := range rucksacks {
@@ -89,5 +90,4 @@ func day3() {
 		teamBadgePriority += getPriority(findTeamBadge(rucksacks[i], rucksacks[i+1], rucksacks[i+2]))
 	}
 	fmt.Printf("teamBadgePriority : %v\n", teamBadgePriority)
-
 }
