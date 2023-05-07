@@ -38,6 +38,7 @@ func sectionsOverlapped(pair string) bool {
 	p := strings.Split(pair, ",")
 	s1 := strings.Split(p[0], "-")
 	s2 := strings.Split(p[1], "-")
+	// FIXME no error handling
 	x, _ := strconv.Atoi(s1[0])
 	y, _ := strconv.Atoi(s1[1])
 	i, _ := strconv.Atoi(s2[0])

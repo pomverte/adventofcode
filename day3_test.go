@@ -24,10 +24,11 @@ PmmdzqPrVvPwwTWBwg`)
 }
 
 func TestDay3FindCommonItem(t *testing.T) {
-	result := findCommonItem(Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"})
+	r := Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"}
+	result := findCommonItem(r)
 	expected := 'p'
 	if result != expected {
-		t.Errorf("findCommonItem(vJrwpWtwJgWr, hcsFMMfFFhFp) returned %c, expected %c", result, expected)
+		t.Errorf("findCommonItem(%v) returned %c, expected %c", r, result, expected)
 	}
 }
 
@@ -35,7 +36,7 @@ func TestDay3GetPriority(t *testing.T) {
 	result := getPriority('p')
 	expected := 16
 	if result != expected {
-		t.Errorf("getPriority('A') returned %v, expected %v", result, expected)
+		t.Errorf("getPriority('p') returned %v, expected %v", result, expected)
 	}
 
 	result = getPriority('L')
@@ -65,7 +66,7 @@ func TestDay3GetPriority(t *testing.T) {
 	result = getPriority('s')
 	expected = 19
 	if result != expected {
-		t.Errorf("getPriority('t') returned %v, expected %v", result, expected)
+		t.Errorf("getPriority('s') returned %v, expected %v", result, expected)
 	}
 }
 

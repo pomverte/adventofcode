@@ -6,16 +6,16 @@ import (
 
 func TestSectionsFullyContained(t *testing.T) {
 	if sectionsFullyContained("2-4,6-8") {
-		t.Errorf("sectionsFullyContained(\"2-4,6-8\") sections are not fully contained")
+		t.Errorf("sections 2-4,6-8 are not fully contained")
 	}
 	if !sectionsFullyContained("2-8,3-7") {
-		t.Errorf("sectionsFullyContained(\"2-8,3-7\") sections are fully contained")
+		t.Errorf("sections 2-8,3-7 are fully contained")
 	}
 	if !sectionsFullyContained("6-6,4-6") {
-		t.Errorf("sectionsFullyContained(\"6-6,4-6\") sections are fully contained")
+		t.Errorf("sections 6-6,4-6 are fully contained")
 	}
 	if !sectionsFullyContained("28-93,5-94") {
-		t.Errorf("sectionsFullyContained(\"28-93,5-94\") sections are fully contained")
+		t.Errorf("sections 28-93,5-94 are fully contained")
 	}
 }
 
