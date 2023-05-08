@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"strings"
+	"unicode/utf8"
 )
 
 //go:embed day02.txt
@@ -66,7 +67,7 @@ func parseInput(input string) []HandPairs {
 	handPairs := []HandPairs{}
 	hands := strings.Split(input, "\n")
 	for _, v := range hands {
-		if len(v) == 0 {
+		if utf8.RuneCountInString(v) == 0 {
 			break
 		}
 		battle := strings.Split(v, " ")

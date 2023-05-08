@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 //go:embed day03.txt
@@ -22,10 +23,10 @@ func (r Rucksack) getItems() string {
 func parseRucksack(inputDay03 string) []Rucksack {
 	rucksacks := []Rucksack{}
 	for _, v := range strings.Split(inputDay03, "\n") {
-		if len(v) == 0 {
+		if utf8.RuneCountInString(v) == 0 {
 			break
 		}
-		mid := len(v) / 2
+		mid := utf8.RuneCountInString(v) / 2
 		rucksacks = append(rucksacks, Rucksack{v[:mid], v[mid:]})
 	}
 	return rucksacks

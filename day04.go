@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 //go:embed day04.txt
@@ -24,7 +25,7 @@ func sectionsFullyContained(pair string) bool {
 func getNbSectionsFullyContained(inputDay04 string) int {
 	result := 0
 	for _, p := range strings.Split(inputDay04, "\n") {
-		if len(p) == 0 {
+		if utf8.RuneCountInString(p) == 0 {
 			break
 		}
 		if sectionsFullyContained(p) {
@@ -49,7 +50,7 @@ func sectionsOverlapped(pair string) bool {
 func getNbSectionsOverlapped(inputDay04 string) int {
 	result := 0
 	for _, p := range strings.Split(inputDay04, "\n") {
-		if len(p) == 0 {
+		if utf8.RuneCountInString(p) == 0 {
 			break
 		}
 		if sectionsOverlapped(p) {
