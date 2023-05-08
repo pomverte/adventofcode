@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-//go:embed day4.txt
-var inputDay4 string
+//go:embed day04.txt
+var inputDay04 string
 
 func sectionsFullyContained(pair string) bool {
 	p := strings.Split(pair, ",")
@@ -21,9 +21,9 @@ func sectionsFullyContained(pair string) bool {
 	return (x <= i && y >= j) || (x >= i && y <= j)
 }
 
-func getNbSectionsFullyContained(inputDay4 string) int {
+func getNbSectionsFullyContained(inputDay04 string) int {
 	result := 0
-	for _, p := range strings.Split(inputDay4, "\n") {
+	for _, p := range strings.Split(inputDay04, "\n") {
 		if len(p) == 0 {
 			break
 		}
@@ -46,9 +46,9 @@ func sectionsOverlapped(pair string) bool {
 	return (x <= i && y >= i) || (x >= i && x <= j)
 }
 
-func getNbSectionsOverlapped(inputDay4 string) int {
+func getNbSectionsOverlapped(inputDay04 string) int {
 	result := 0
-	for _, p := range strings.Split(inputDay4, "\n") {
+	for _, p := range strings.Split(inputDay04, "\n") {
 		if len(p) == 0 {
 			break
 		}
@@ -59,8 +59,8 @@ func getNbSectionsOverlapped(inputDay4 string) int {
 	return result
 }
 
-func day4() {
+func day04() {
 	fmt.Println("=== DAY 4")
-	fmt.Printf("Number of assignment pairs where one range fully contain the other : %v\n", getNbSectionsFullyContained(inputDay4))
-	fmt.Printf("Number of assignment pairs with ranges overlaping : %v\n", getNbSectionsOverlapped(inputDay4))
+	fmt.Printf("Number of assignment pairs where one range fully contain the other : %v\n", getNbSectionsFullyContained(inputDay04))
+	fmt.Printf("Number of assignment pairs with ranges overlaping : %v\n", getNbSectionsOverlapped(inputDay04))
 }

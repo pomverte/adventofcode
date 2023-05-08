@@ -7,8 +7,8 @@ import (
 	"unicode"
 )
 
-//go:embed day3.txt
-var inputDay3 string
+//go:embed day03.txt
+var inputDay03 string
 
 type Rucksack struct {
 	compartmentOne string
@@ -19,9 +19,9 @@ func (r Rucksack) getItems() string {
 	return r.compartmentOne + r.compartmentTwo
 }
 
-func parseRucksack(inputDay3 string) []Rucksack {
+func parseRucksack(inputDay03 string) []Rucksack {
 	rucksacks := []Rucksack{}
-	for _, v := range strings.Split(inputDay3, "\n") {
+	for _, v := range strings.Split(inputDay03, "\n") {
 		if len(v) == 0 {
 			break
 		}
@@ -76,9 +76,9 @@ func findTeamBadge(r1, r2, r3 Rucksack) rune {
 	panic("No common item found")
 }
 
-func day3() {
+func day03() {
 	fmt.Println("=== DAY 3")
-	rucksacks := parseRucksack(inputDay3)
+	rucksacks := parseRucksack(inputDay03)
 	commonItemPrioritySum := 0
 	for _, v := range rucksacks {
 		commonItemPrioritySum += getPriority(findCommonItem(v))

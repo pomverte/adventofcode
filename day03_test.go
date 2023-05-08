@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestDay3ParseRucksack(t *testing.T) {
+func TestDay03ParseRucksack(t *testing.T) {
 	result := parseRucksack(`vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg`)
@@ -23,7 +23,7 @@ PmmdzqPrVvPwwTWBwg`)
 	}
 }
 
-func TestDay3FindCommonItem(t *testing.T) {
+func TestDay03FindCommonItem(t *testing.T) {
 	r := Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"}
 	result := findCommonItem(r)
 	expected := 'p'
@@ -32,7 +32,7 @@ func TestDay3FindCommonItem(t *testing.T) {
 	}
 }
 
-func TestDay3GetPriority(t *testing.T) {
+func TestDay03GetPriority(t *testing.T) {
 	result := getPriority('p')
 	expected := 16
 	if result != expected {
@@ -93,7 +93,7 @@ func TestRunesEqualsFail2(t *testing.T) {
 		t.Errorf("runesEquals(%c, %c) should NOT be equals", r1, r2)
 	}
 }
-func TestDay3FindCommonItemBetweenRucksack(t *testing.T) {
+func TestDay03FindCommonItemBetweenRucksack(t *testing.T) {
 	result := findCommonItemBetweenRucksack(
 		Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"},
 		Rucksack{"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"})
@@ -103,7 +103,7 @@ func TestDay3FindCommonItemBetweenRucksack(t *testing.T) {
 	}
 }
 
-func TestDay3FindTeamBadge1(t *testing.T) {
+func TestDay03FindTeamBadge1(t *testing.T) {
 	result := findTeamBadge(
 		Rucksack{"vJrwpWtwJgWr", "hcsFMMfFFhFp"},
 		Rucksack{"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"},
@@ -114,7 +114,7 @@ func TestDay3FindTeamBadge1(t *testing.T) {
 	}
 }
 
-func TestDay3FindTeamBadge2(t *testing.T) {
+func TestDay03FindTeamBadge2(t *testing.T) {
 	result := findTeamBadge(
 		Rucksack{"wMqvLMZHhHMvwLH", "jbvcjnnSBnvTQFn"},
 		Rucksack{"ttgJtRGJ", "QctTZtZT"},

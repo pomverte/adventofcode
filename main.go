@@ -43,6 +43,6 @@ func intListEquals(i1, i2 []int) bool {
 }
 
 func main() {
-	day3()
-	day4()
+	day03()
+	day04()
 }

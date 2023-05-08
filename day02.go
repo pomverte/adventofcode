@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-//go:embed day2.txt
+//go:embed day02.txt
 var inputDay2 string
 
 type Hand int
